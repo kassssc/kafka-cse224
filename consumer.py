@@ -4,20 +4,23 @@ from kafka import KafkaConsumer
 
 def main():
   try:
+    print('Starting Kafka consumer...')
     consumer = KafkaConsumer('experiment', bootstrap_servers='34.221.164.208:9092')
     ts_array = []
     diffs = []
 
     for msg in consumer:
       ts = time.time()
-      msg_ts = '{}\t->\t{}'.format(msg.value, str(ts))
-      diff = ts - float(msg.value.split('\t')[1])
-      msg_ts = '{}\t{}'.format(msg_ts, str(diff))
+      msg_ts = '{}\t->\t{}'.format(msg.value, ts)
+      diff = ts - float(msg.value)
+      msg_ts = '{}\t{}'.format(msg_ts, diff)
       ts_array.append(msg_ts)
       diffs.append(diff)
       print(msg_ts)
 
   except KeyboardInterrupt:
+    ts_array.remove(0)
+    diffs.remove(0)
     with open('clog.txt', 'w') as f:
       f.write('Consumer Log\n')
       for msg in ts_array:

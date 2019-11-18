@@ -2,18 +2,20 @@ import time
 from kafka import KafkaProducer
 
 def main():
+  print('Starting Kafka producer...')
   producer = KafkaProducer(bootstrap_servers='34.221.164.208:9092')
   ts_array = []
 
   user_input = input('Messages to send: ')
-  print('\n')
+  print('Sending {} messages...\n'.format(user_input))
 
-  for i in range(int(user_input)):
+  for _ in range(int(user_input)):
     ts = time.time()
-    msg = '{}:\t{}'.format(str(i+1), str(ts))
-    producer.send('experiment', msg.encode())
-    ts_array.append(msg)
-    time.sleep(2)
+    producer.send('experiment', str(ts).encode())
+    log_msg = '{}\t->'.format(ts)
+    print(log_msg)
+    ts_array.append(log_msg)
+    time.sleep(1)
   producer.flush()
 
   with open('plog.txt', 'w') as f:
