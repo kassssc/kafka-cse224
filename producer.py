@@ -9,7 +9,7 @@ def main():
   for i in range(10):
     ts = time.time()
     msg = str(i+1) + ':\t' + str(ts)
-    producer.send('test', msg.encode())
+    producer.send('experiment', msg.encode())
     ts_array.append(msg)
   producer.flush()
 

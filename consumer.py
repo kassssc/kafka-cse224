@@ -3,7 +3,7 @@ import time
 from kafka import KafkaConsumer
 
 def main():
-  consumer = KafkaConsumer('test', bootstrap_servers='34.221.164.208:9092')
+  consumer = KafkaConsumer('experiment', bootstrap_servers='34.221.164.208:9092')
   ts_array = []
 
   for msg in consumer:
