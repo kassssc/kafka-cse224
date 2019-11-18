@@ -12,7 +12,7 @@ def main():
       ts = time.time()
       msg_ts = '{}\t->\t{}'.format(msg.value, str(ts))
       diff = ts - float(msg.value.split('\t')[1])
-      msg_ts = '{}\t\t{}'.format(msg_ts, str(diff))
+      msg_ts = '{}\t{}'.format(msg_ts, str(diff))
       ts_array.append(msg_ts)
       diffs.append(diff)
       print(msg_ts)
