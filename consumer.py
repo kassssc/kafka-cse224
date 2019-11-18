@@ -19,8 +19,8 @@ def main():
       print(msg_ts)
 
   except KeyboardInterrupt:
-    ts_array.remove(0)
-    diffs.remove(0)
+    del ts_array[0]
+    del diffs[0]
     with open('clog.txt', 'w') as f:
       f.write('Consumer Log\n')
       for msg in ts_array:
